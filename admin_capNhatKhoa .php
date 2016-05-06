@@ -19,13 +19,48 @@
 			}
 			
 		?>
+		<script>
+		$j=jQuery.noConflict();
+	$j(document)
+	.ready(
 		
+		function() {
+			
+			$j("#capNhatKhoa")
+				.validate(
+					{
+						ignore : [],
+						debug : false,
+						rules:{
+							tenKhoa: {
+								required: true,
+								
+								
+							},
+							
+							
+						},
+						messages : {
+							tenKhoa:{
+								required: "Vui lòng nhập vào tên khoa.",
+							},
+							
+							
+						},
+					});
+		});
+</script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
 											
-		<form role="form" action="Controller_capNhatKhoa.php" method="POST">
+		<form id="capNhatKhoa" role="form" action="Controller_capNhatKhoa.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Tên khoa:</label>
 			<input type="text" class="form-control" id="tenKhoa" name="tenKhoa" value="<?php echo $tenKhoa ;?>" />

@@ -5,29 +5,40 @@
 			include('header-admin.php');
 		?>
 		<script>
-		$j=jQuery.noConflict();
+	$j=jQuery.noConflict();	
 	$j(document)
 	.ready(
 		
 		function() {
 			
-			$j("#themKhoa")
+			$j("#login")
 				.validate(
 					{
 						ignore : [],
 						debug : false,
 						rules:{
-							tenKhoa: {
-								required: true,
-								
-								
-							},
 							
+							tenDangNhap: {
+								required: true,
+								minlength: 6,
+							},
+							matKhau: {
+								required: true,
+								maxlength: 12,
+								minlength: 6,
+							},
 							
 						},
 						messages : {
-							tenKhoa:{
-								required: "Vui lòng nhập vào tên khoa",
+							
+							tenDangNhap: {
+								required: "Vui lòng nhập vào tên đăng nhập.",
+								minlength: "Tên đăng nhập phải lớn hơn 6 ký tự.",
+							},
+							matKhau: {
+								required: "Vui lòng nhập vào mật khẩu",
+								maxlength: "Mật khẩu chỉ có tối đa 12 ký tự",
+								minlength: "Mật khẩu phải có ít nhất 6 ký tự.",
 							},
 							
 							
@@ -44,16 +55,25 @@
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
-											
-		<form id="themKhoa" role="form" action="Controller_themKhoa.php" method="POST">
+					<?php
+						if(isset($msg)!=null){
+							echo "<p style='color:red'>".$msg."</p>";
+						}
+					?>						
+		<form role="form" id="login" action="Controller_dangNhap.php" method="POST">
+			
 		  <div class="form-group">
-			<label for="name">Tên khoa:</label>
-			<input type="text" class="form-control" id="khoa" name="tenKhoa">
+			<label>Tên đăng nhập:</label>
+			<input type="text" class="form-control" id="tendangnhap" name="tenDangNhap">
+		  </div>
+		  <div class="form-group">
+			<label>Mật khẩu:</label>
+			<input type="password" class="form-control" id="matKhau" name="matKhau">
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Thêm</button>
+		  <button type="submit" class="btn btn-primary" name="dangNhap" >Đăng nhập</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachKhoa.php"><button class="btn btn-primary">Trở lại</button></a>
+		  
 		</form>
 											
 					

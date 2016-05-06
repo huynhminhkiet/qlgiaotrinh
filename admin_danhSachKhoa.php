@@ -7,9 +7,15 @@
 		?>
 		
 		<section id="content_area">
+			
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
+						<?php
+							if(isset($msg)){
+								echo "<p style='color:red'>".$msg."</p>";
+							}
+						?>
 						<div >
 							<a style="float: right;margin-bottom:10px"  href="admin_themKhoa.php"><button class="btn btn-primary">Thêm</button></a>
 						</div>						

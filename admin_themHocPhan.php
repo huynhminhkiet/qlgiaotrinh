@@ -4,16 +4,58 @@
 		<?php 
 			include('header-admin.php');
 		?>
+		<script>
+		$j=jQuery.noConflict();
+	$j(document)
+	.ready(
 		
+		function() {
+			
+			$j("#themHocPhan")
+				.validate(
+					{
+						ignore : [],
+						debug : false,
+						rules:{
+							tenHocPhan: {
+								required: true,
+								
+								
+							},
+							ky: {
+								required: true,
+								number: true,
+							},
+							
+							
+						},
+						messages : {
+							tenHocPhan:{
+								required: "Vui lòng nhập vào tên học phần",
+							},
+							ky: {
+								required: "Vui lòng nhập vào kỳ",
+								number: "Vui lòng nhập kỳ là số",
+							},
+							
+						},
+					});
+		});
+</script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
 											
-		<form role="form" action="Controller_themHocPhan.php" method="POST">
+		<form id="themHocPhan" role="form" action="Controller_themHocPhan.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Tên học phần:</label>
-			<input type="text" class="form-control" id="khoa" name="tenHocPhan">
+			<input type="text" class="form-control" id="tenHocPhan" name="tenHocPhan">
 		  </div>
 		   <div class="form-group">
 			<label for="name" style="display:block">Tên khoa:</label>
@@ -42,7 +84,7 @@
 		  </div>
 		   <div class="form-group">
 			<label for="name">Kỳ:</label>
-			<input type="text" class="form-control" id="khoa" name="ky">
+			<input type="text" class="form-control" id="ky" name="ky">
 		  </div>
 	
 		  <button type="submit" class="btn btn-primary">Thêm</button>

@@ -1,6 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
 	<?php 
-		$linkdb = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-		mysqli_select_db($linkdb ,"quanlygiaotrinh");
+		include('database.php');
 		$tenGT=$_POST['tenGiaoTrinh'];
 		$idHP=$_POST['hocPhan'];
 		$ngay=$_POST['ngayTao'];
@@ -15,7 +17,8 @@
 			echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($linkdb ); 
 			
 		}else{
-			header('location:admin_danhSachGiaoTrinh.php');
+			$msg ="Bạn đã thêm giáo trình thành công";
+			include_once 'admin_danhSachKhoa.php';
 		}
 	
 	?>

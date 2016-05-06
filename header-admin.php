@@ -57,10 +57,16 @@
 						<a href=""><h1><span>GIÁO TRÌNH</span> BÁCH KHOA</h1></a>
 					</div>
 					<div class="clearfix search floatright">
-						<form>
-							<input type="text" placeholder="Search"/>
-							<input type="submit" />
-						</form>
+						<?php 
+							if(isset($_SESSION['userid'])){
+								echo "<p style='display:inline'>Chào ".$_SESSION['name'].",</p>
+										<a href='Controller_dangXuat.php'>LOGOUT</a>";
+							}else{
+								
+								echo "<a href='admin_dangNhap.php'>LOGIN</a>";
+							}
+						?>
+						
 					</div>
 				</div>
 				<div class="header_bottom">

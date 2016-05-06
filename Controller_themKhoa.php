@@ -1,6 +1,8 @@
-	<?php 
-		$link = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-		mysqli_select_db($link,"quanlygiaotrinh");
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+		<?php 
+			include('database.php');
 		$tenKhoa=$_POST['tenKhoa'];
 		$query="INSERT INTO `khoa_tbl`( `tenKhoa`) VALUES ('".$tenKhoa."')";
 		$result = mysqli_query($link,$query); 
@@ -8,7 +10,8 @@
 			echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 		}else{
-			header('location:admin_danhSachKhoa.php');
+			$msg ="Bạn đã thêm khoa thành công";
+				include_once 'admin_danhSachKhoa.php';
 		}
 	?>
 

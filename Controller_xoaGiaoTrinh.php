@@ -1,6 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
 	<?php 
-		$link = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-		mysqli_select_db($link,"quanlygiaotrinh");
+		include('database.php');
 		$id=$_GET['id'];
 		$sql = "DELETE FROM `giaotrinh_tbl` WHERE idGiaoTrinh=".$id; 
 		$result = mysqli_query($link,$sql);
@@ -9,7 +11,8 @@
 			echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 		}else{
-			header('location:admin_danhSachGiaoTrinh.php');
+			$msg ="Bạn đã xóa giáo trình mã ".$id." thành công";
+			include_once 'admin_danhSachGiaoTrinh.php';
 		}
 	?>
 

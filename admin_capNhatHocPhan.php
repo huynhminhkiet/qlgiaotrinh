@@ -21,13 +21,55 @@
 			}		
 								
 		?>
+		<script>
+		$j=jQuery.noConflict();
+	$j(document)
+	.ready(
 		
+		function() {
+			
+			$j("#capNhatHocPhan")
+				.validate(
+					{
+						ignore : [],
+						debug : false,
+						rules:{
+							tenHocPhan: {
+								required: true,
+								
+								
+							},
+							ky: {
+								required: true,
+								number: true,
+							},
+							
+							
+						},
+						messages : {
+							tenHocPhan:{
+								required: "Vui lòng nhập vào tên học phần",
+							},
+							ky: {
+								required: "Vui lòng nhập vào kỳ",
+								number: "Vui lòng nhập kỳ là số",
+							},
+							
+						},
+					});
+		});
+</script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
 											
-		<form role="form" action="Controller_capNhatHocPhan.php" method="POST">
+		<form id="capNhatHocPhan" role="form" action="Controller_capNhatHocPhan.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Tên học phần:</label>
 			<input type="text" class="form-control"  name="tenHocPhan" value="<?php echo $tenHP ;?>"  />
@@ -64,7 +106,7 @@
 		  </div>
 		   <div class="form-group">
 			<label for="name">Kỳ:</label>
-			<input type="text" class="form-control" id="khoa" name="ky" value="<?php echo $ky; ?>"  />
+			<input type="text" class="form-control"  name="ky" value="<?php echo $ky; ?>"  />
 		  </div>
 	
 		  <button type="submit" class="btn btn-primary">Sửa</button>

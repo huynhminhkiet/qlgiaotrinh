@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
-			include('header-admin.php');
+			include('database.php');
 			$idGT=$_POST['idGT'];
 			$tenGT=$_POST['tenGT'];
 			$idHP=$_POST['hocPhan'];
@@ -18,7 +18,8 @@
 				echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 			}else{
-				header('location:admin_danhSachHocPhan.php');
+				$msg ="Bạn đã cập nhật giao trình mã ".$id." thành công";
+				include_once 'admin_danhSachGiaoTrinh.php';
 			}
 		?>
 		

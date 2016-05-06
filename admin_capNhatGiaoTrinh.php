@@ -25,13 +25,69 @@
 			}	
 								
 		?>
+		<script>
+		$j=jQuery.noConflict();
+	$j(document)
+	.ready(
 		
+		function() {
+			
+			$j("#capNhatGiaoTrinh")
+				.validate(
+					{
+						ignore : [],
+						debug : false,
+						rules:{
+							tenGT: {
+								required: true,
+								
+								
+							},
+							tacGia: {
+								required: true,
+								
+							},
+							link: {
+								required: true,
+								
+							},
+							moTa: {
+								required: true,
+								
+							},
+							
+						},
+						messages : {
+							ten:{
+								required: "Vui lòng nhập vào họ và tên",
+							},
+							tacGia: {
+								required: "Vui lòng nhập vào tác giả",
+								
+							},
+							link: {
+								required: "Vui lòng nhập vào link dowload",
+								
+							},
+							moTa: {
+								required: "Vui lòng nhập vào mô tả",
+								
+							},
+						},
+					});
+		});
+</script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
 											
-		<form role="form" action="Controller_capNhatGiaoTrinh.php" method="POST">
+		<form id="capNhatGiaoTrinh" role="form" action="Controller_capNhatGiaoTrinh.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Tên giáo trình:</label>
 			<input type="text" class="form-control"  name="tenGT" value="<?php echo $ten ;?>"  />

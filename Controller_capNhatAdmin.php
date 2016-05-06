@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
-			include('header-admin.php');
+			include('database.php');
 			$id=$_POST['idAdmin'];
 		    $ten=$_POST['ten'];
 			$user=$_POST['tenDangNhap'];
@@ -16,23 +16,27 @@
 				echo 'Could not run query: ' . mysqli_error($link);
 				exit;
 			} else {
-					$row = mysqli_fetch_assoc($result); 
+					$row = mysqli_fetch_assoc($result1); 
 					if($row!=null){
-						header('location:admin_danhSachAdmin.php');
+						$msg ="Tên đăng nhập của bạn bị trùng";
+						include_once 'admin_capNhatAdmin.php';
+					}else{
+						$sql = "UPDATE `admin_tbl` SET `tenAdmin`='".$ten."',`tenDangNhap`='".$user."',`matKhau`='".$pass."' WHERE `idAdmin`=".$id; 
+						echo $sql;
+						$result = mysqli_query($link,$sql); 
+						//đổi password của admin 
+						if ( !$result ) {
+							echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
+						
+						}else{
+							$msg ="Bạn đã cập nhật admin mã ".$id." thành công";
+							include_once 'admin_danhSachAdmin.php';
+						}
 					}
 			}	
 							
 			// allAdmin-end
-			$sql = "UPDATE `admin_tbl` SET `tenAdmin`='".$ten."',`tenDangNhap`='".$user."',`matKhau`='".$pass."' WHERE `idAdmin`=".$id; 
-			echo $sql;
-			$result = mysqli_query($link,$sql); 
-			//đổi password của admin 
-			if ( !$result ) {
-				echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
-			}else{
-				header('location:admin_danhSachAdmin.php');
-			}
 		
 		?>
 		

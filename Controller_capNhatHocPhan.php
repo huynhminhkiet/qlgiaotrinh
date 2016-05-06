@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
-			include('header-admin.php');
+			include('database.php');
 			$idHP=$_POST['idHocPhan'];
 		    $ten=$_POST['tenHocPhan'];
 			$idKhoa=$_POST['khoa'];
@@ -15,7 +15,8 @@
 				echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 			}else{
-				header('location:admin_danhSachHocPhan.php');
+				$msg="Bạn đã cập nhật thông tin học phần mã ".$idHP." thành công";
+				include_once 'admin_danhSachHocPhan.php';
 			}
 		?>
 		
