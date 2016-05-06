@@ -13,7 +13,9 @@
 				echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 			}else{
-				header('location:admin_danhSachKhoa.php');
+				
+				header("Controller_danhSachKhoa.php")	;
+								
 			}
 		?>
 		

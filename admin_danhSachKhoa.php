@@ -3,6 +3,7 @@
 
 		<?php 
 			include('header-admin.php');
+			
 		?>
 		
 		<section id="content_area">
