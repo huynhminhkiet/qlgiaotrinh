@@ -1,8 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
-		<?php
-			include('checkSessionLogin.php');
+		<?php 
 			include('header-admin.php');
 		?>
 		<script>
@@ -12,17 +11,13 @@
 		
 		function() {
 			
-			$j("#capNhat-Admin")
+			$j("#login")
 				.validate(
 					{
 						ignore : [],
 						debug : false,
 						rules:{
-							ten: {
-								required: true,
-								
-								
-							},
+							
 							tenDangNhap: {
 								required: true,
 								minlength: 6,
@@ -35,9 +30,7 @@
 							
 						},
 						messages : {
-							ten:{
-								required: "Vui lòng nhập vào họ và tên",
-							},
+							
 							tenDangNhap: {
 								required: "Vui lòng nhập vào tên đăng nhập.",
 								minlength: "Tên đăng nhập phải lớn hơn 6 ký tự.",
@@ -67,11 +60,8 @@
 							echo "<p style='color:red'>".$msg."</p>";
 						}
 					?>						
-		<form role="form" id="capNhat-Admin" action="Controller_themAdmin.php" method="POST">
-		  <div class="form-group">
-			<label for="name">Họ và tên:</label>
-			<input type="text" class="form-control" id="ten" name="ten">
-		  </div>
+		<form role="form" id="login" action="Controller_dangNhap.php" method="POST">
+			
 		  <div class="form-group">
 			<label>Tên đăng nhập:</label>
 			<input type="text" class="form-control" id="tendangnhap" name="tenDangNhap">
@@ -81,9 +71,9 @@
 			<input type="password" class="form-control" id="matKhau" name="matKhau">
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary" onClick="checkUsername()" >Thêm</button>
+		  <button type="submit" class="btn btn-primary" name="dangNhap" >Đăng nhập</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachAdmin.php"><button class="btn btn-primary">Trở lại</button></a>
+		  
 		</form>
 											
 					

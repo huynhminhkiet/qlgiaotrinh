@@ -1,21 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+		
 	<?php 
-		$linkdb = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-		mysqli_select_db($linkdb ,"quanlygiaotrinh");
+		
+		include("checkSessionLogin.php");
+		include('database.php');
 		$tenGT=$_POST['tenGiaoTrinh'];
 		$idHP=$_POST['hocPhan'];
 		$ngay=$_POST['ngayTao'];
 		$moTa=$_POST['moTa'];
+		
 		$tacGia=$_POST['tacGia'];
-		$link=$_POST['link'];
-		echo $ngay;
-		$query="INSERT INTO `giaotrinh_tbl`(`idHocPhan`, `idAdmin`, `ngayTao`, `tenGiaoTrinh`, `tacGia`, `moTa`, `link`) VALUES (".$idHP.",2,'".$ngay."','".$tenGT."','".$tacGia."','".$moTa."','".$link."')";
-		echo $query;
-		$result = mysqli_query($linkdb ,$query); 
+		$linkd=$_POST['link'];
+	
+		$query="INSERT INTO `giaotrinh_tbl`(`idHocPhan`, `idAdmin`, `ngayTao`, `tenGiaoTrinh`, `tacGia`, `moTa`, `link`) VALUES (".$idHP.",2,'".$ngay."','".$tenGT."','".$tacGia."','".$moTa."','".$linkd."')";
+		
+		$result = mysqli_query($link ,$query); 
 		if ( !$result ) {
-			echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($linkdb ); 
+			echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link ); 
 			
 		}else{
-			header('location:admin_danhSachGiaoTrinh.php');
+			$msg ="Bạn đã thêm giáo trình thành công";
+			include_once 'admin_danhSachGiaoTrinh.php';
 		}
 	
 	?>

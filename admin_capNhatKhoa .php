@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 			$id=$_GET['id'];
 		    $query="SELECT * FROM `khoa_tbl` WHERE idKhoa=".$id;
@@ -19,22 +20,57 @@
 			}
 			
 		?>
+		<script>
+		$j=jQuery.noConflict();
+	$j(document)
+	.ready(
 		
+		function() {
+			
+			$j("#capNhatKhoa")
+				.validate(
+					{
+						ignore : [],
+						debug : false,
+						rules:{
+							tenKhoa: {
+								required: true,
+								
+								
+							},
+							
+							
+						},
+						messages : {
+							tenKhoa:{
+								required: "Vui lòng nhập vào tên khoa.",
+							},
+							
+							
+						},
+					});
+		});
+</script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
 											
-		<form role="form" action="Controller_capNhatKhoa.php" method="POST">
+		<form id="capNhatKhoa" role="form" action="Controller_capNhatKhoa.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Tên khoa:</label>
 			<input type="text" class="form-control" id="tenKhoa" name="tenKhoa" value="<?php echo $tenKhoa ;?>" />
 			<input type="hidden" class="form-control" id="idKhoa" name="idKhoa" value="<?php echo $id ;?>" />
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Cập nhật</button>
-		   
-		  <a href="admin_danhSachKhoa.php"><button class="btn btn-primary">Trở lại</button></a>
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
+				
+		 
 		
 		</form>
 											

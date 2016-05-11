@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
-			include('header-admin.php');
+			
+			include("checkSessionLogin.php");
+			include('database.php');
 			$idGT=$_POST['idGT'];
 			$tenGT=$_POST['tenGT'];
 			$idHP=$_POST['hocPhan'];
@@ -13,12 +15,15 @@
 									
 			$sql = "UPDATE `giaotrinh_tbl` SET `tenGiaoTrinh`='".$tenGT."',`idHocPhan`=".$idHP.",`moTa`='".$moTa."' ,`tacGia`='".$tacGia."',`link`='".$linkD."' WHERE `idGiaoTrinh`=".$idGT; 
 			$result = mysqli_query($link,$sql); 
+			
 			//đổi password của admin 
+			
 			if ( !$result ) {
 				echo "Không thểthực hiện được câu lệnh SQL:".mysqli_error($link); 
 			
 			}else{
-				header('location:admin_danhSachHocPhan.php');
+				$msg ="Bạn đã cập nhật giao trình mã ".$idGT." thành công";
+				include_once 'admin_danhSachGiaoTrinh.php';
 			}
 		?>
 		

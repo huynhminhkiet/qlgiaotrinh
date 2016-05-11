@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 			$id=$_GET['id'];
 		    $query="SELECT * FROM `admin_tbl` WHERE idAdmin=".$id;
@@ -21,6 +22,7 @@
 			}
 			
 			
+			
 		?>
 		<script>
 		$j=jQuery.noConflict();
@@ -37,29 +39,52 @@
 						rules:{
 							ten: {
 								required: true,
-								number:true,
+								
+								
+							},
+							tenDangNhap: {
+								required: true,
+								minlength: 6,
+							},
+							matKhau: {
+								required: true,
 								maxlength: 12,
-								minlength: 9,
+								minlength: 6,
 							},
 							
 						},
 						messages : {
 							ten:{
-								required: "Vui lòng nhập vào so dien thoai",
-								number:"Vui lòng nhập vào là số ",
-								maxlength:"Số CMND không được vượt quá 12 ký tự",
-								maxlength:"Số CMND không được ít hơn ký tự",
+								required: "Vui lòng nhập vào họ và tên",
+							},
+							tenDangNhap: {
+								required: "Vui lòng nhập vào tên đăng nhập.",
+								minlength: "Tên đăng nhập phải lớn hơn 6 ký tự.",
+							},
+							matKhau: {
+								required: "Vui lòng nhập vào mật khẩu",
+								maxlength: "Mật khẩu chỉ có tối đa 12 ký tự",
+								minlength: "Mật khẩu phải có ít nhất 6 ký tự.",
 							},
 							
 						},
 					});
 		});
 </script>
+<style>
+	.error {
+		color:red;
+	} 
+</style>
 		<section id="content_area">
 			<div class="clearfix wrapper main_content_area">
 				<div class="clearfix main_content floatleft">
 					<div class="clearfix content">
-											
+					<?php
+						if(isset($msg)!=null){
+							echo "<p style='color:red'>".$msg."</p>";
+						}
+					?>						
 		<form role="form" name="capNhatAdmin" id="capNhat-Admin" action="Controller_capNhatAdmin.php" method="POST">
 		  <div class="form-group">
 			<label for="name">Họ và tên:</label>
