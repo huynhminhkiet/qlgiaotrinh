@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-
-		<?php 
+		
+		<?php
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 		?>
 		<script>
@@ -17,7 +18,7 @@
 						ignore : [],
 						debug : false,
 						rules:{
-							tenGT: {
+							tenGiaoTrinh: {
 								required: true,
 								
 								
@@ -34,10 +35,14 @@
 								required: true,
 								
 							},
+							khoa: {
+								required: true,
+								
+							},
 							
 						},
 						messages : {
-							ten:{
+							tenGiaoTrinh:{
 								required: "Vui lòng nhập vào họ và tên",
 							},
 							tacGia: {
@@ -52,9 +57,43 @@
 								required: "Vui lòng nhập vào mô tả",
 								
 							},
+							khoa: {
+								required: "Vui lòng chọn khoa",
+								
+							},
 						},
 					});
 		});
+</script>
+<script>
+	function showHocPhan(str) {
+		if (str == "") {
+			document.getElementById("ajax-HocPhan").innerHTML = "";
+			return;
+		} else { 
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("ajax-HocPhan").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET","Controller_ajaxHocPhan.php?q="+str,true);
+			xmlhttp.send();
+		}
+	}
+	function validKhoa() {
+		if(document.getElementById("khoa").value = "0"){
+				
+			
+		}
+		
+	}
 </script>
 <style>
 	.error {
@@ -71,19 +110,17 @@
 			<label for="name">Tên giáo trình:</label>
 			<input type="text" class="form-control" id="tenGiaoTrinh" name="tenGiaoTrinh">
 		  </div>
-		   <div class="form-group">
-			<label for="name" style="display:block">Tên học phần:</label>
+		  
+		   <div class="form-group" style="display:inline">
+				<label for="name">Khoa:</label>
 			
 
 
-			<select name="hocPhan"  >
+			<select name="khoa"  onchange="showHocPhan(this.value)">
 				
+				<option value="">======Chọn khoa======</option>
 				<?php
-								//session
-								session_start();
-								$username=$_SESSION["username"];
-								//session
-								$query="SELECT hp.idHocPhan ,hp.idKhoa,hp.tenHocPhan,hp.ky,k.tenKhoa FROM `hocphan_tbl` AS hp INNER JOIN khoa_tbl AS k ON hp.idKhoa=k.idKhoa ; ";
+								$query="SELECT * FROM `khoa_tbl` WHERE 1";
 								$result=mysqli_query($link,$query);
 								
 								if (!$result) {
@@ -92,15 +129,25 @@
 								} else {
 									while ( $row = mysqli_fetch_assoc($result) )
 									{ 
-										echo "<option value='".$row['idHocPhan']."'>".$row['tenHocPhan']."</option>";
+										echo "<option value='".$row['idKhoa']."'>".$row['tenKhoa']."</option>";
+									
 									}
-								}	
-											
-									 
+								}	 
 				?>
 			
 			</select>
 		  </div>
+		  <div class="form-group" style="display:inline" id="ajax-HocPhan" >
+			
+			
+			
+
+
+			
+			
+			
+		  </div>
+		  
 		   <div class="form-group">
 			<label for="name">Tác giả:</label>
 			<input type="text" class="form-control" id="tacGia" name="tacGia">
@@ -108,27 +155,28 @@
 		  <?php
 				  $now = getdate(); 
    
-				  $currentDate = $now["year"] . "-" . $now["mon"] . "-" . $now["mday"]; 
+				  $currentDate = $now["year"]."-".$now["mon"]."-".$now["mday"]; 
     
 			?>
 		  <div class="form-group">
-			<label for="name">Ngày tạo:</label>
-			<input type="text" class="form-control" id="ngayTao" name="ngayTao" value="<?php echo $currentDate;  ?>" disabled />
+			<label >Ngày tạo:</label>
+			
+			<input type="text" class="form-control" id="ngayTao" name="ngayTao" value="<?php echo $currentDate;  ?>" readonly />
 		  </div>
 		  <div class="form-group">
-			<label for="name">Link:</label>
+			<label >Link:</label>
 			<input type="text" class="form-control" id="link" name="link">
 		  </div>
 		  <div class="form-group">
-			<label for="name">Admin:</label>
-			<input type="text" class="form-control" id="admin" name="admin" value="<?php echo $username;?>" disabled />
+			<label >Admin:</label>
+			<input type="text" class="form-control" id="admin" name="admin" value="<?php echo $_SESSION['name'];?>" readonly />
 		  </div>
 		  <div class="form-group">
-			<label for="name">Mô tả:</label>
+			<label >Mô tả:</label>
 			<textarea  class="form-control" id="moTa" name="moTa"></textarea>
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Thêm</button>
+		  <button type="submit" class="btn btn-primary" onclick="">Thêm</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
 		  <a href="admin_danhSachHocPhan.php"><button class="btn btn-primary">Trở lại</button></a>
 		</form>

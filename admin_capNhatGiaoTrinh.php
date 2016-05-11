@@ -2,11 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 			
 			$id=$_GET['id'];
 		   
-			$query="SELECT gt.idGiaoTrinh,gt.idHocPhan,gt.idAdmin,gt.ngayTao,gt.tenGiaoTrinh,gt.tacGia,gt.moTa,gt.link ,hp.tenHocPhan,ad.tenAdmin ,ad.tenDangNhap FROM `giaotrinh_tbl` AS gt INNER JOIN hocphan_tbl AS hp ON gt.idHocPhan= hp.idHocPhan INNER JOIN admin_tbl AS ad ON gt.idAdmin= ad.idAdmin  WHERE idGiaoTrinh=".$id;
+			$query="SELECT gt.idGiaoTrinh,gt.idHocPhan,gt.idAdmin,gt.ngayTao,gt.tenGiaoTrinh,gt.tacGia,gt.moTa,gt.link ,hp.tenHocPhan,ad.tenAdmin ,ad.tenDangNhap,hp.idKhoa FROM `giaotrinh_tbl` AS gt INNER JOIN hocphan_tbl AS hp ON gt.idHocPhan= hp.idHocPhan INNER JOIN admin_tbl AS ad ON gt.idAdmin= ad.idAdmin  WHERE idGiaoTrinh=".$id;
 			$result=mysqli_query($link,$query);
 								
 			if (!$result) {
@@ -21,6 +22,7 @@
 					$tacGia=$row['tacGia'];
 					$moTa=$row['moTa'];
 					$linkD=$row['link'];
+					$idKhoa=$row['idKhoa'];
 				}
 			}	
 								
@@ -77,6 +79,29 @@
 					});
 		});
 </script>
+<script>
+	function showHocPhan(str) {
+		if (str == "0") {
+			document.getElementById("ajax-HocPhan").innerHTML = "";
+			return;
+		} else { 
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("ajax-HocPhan").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET","Controller_ajaxHocPhan.php?q="+str,true);
+			xmlhttp.send();
+		}
+	}
+</script>
 <style>
 	.error {
 		color:red;
@@ -93,8 +118,37 @@
 			<input type="text" class="form-control"  name="tenGT" value="<?php echo $ten ;?>"  />
 			<input type="hidden" class="form-control"  name="idGT" value="<?php echo $id ;?>"  />
 		  </div>
-		    <div class="form-group">
-			<label for="name" style="display:block">Tên học phần:</label>
+		   <div class="form-group" style="display:inline">
+			<label for="name" >Tên khoa:</label>
+			
+
+
+			<select name="khoa"  onchange="showHocPhan(this.value)">
+				
+				<?php
+								$query="SELECT * FROM `khoa_tbl` WHERE 1";
+								$result=mysqli_query($link,$query);
+								
+								if (!$result) {
+								echo 'Could not run query: ' . mysqli_error($link);
+								exit;
+								} else {
+									while ( $row = mysqli_fetch_assoc($result) )
+									{ 
+										if($idKhoa==$row['idKhoa']){
+											echo "<option value='".$row['idKhoa']."' selected>".$row['tenKhoa']."</option>";
+											
+										}else{
+											echo "<option value='".$row['idKhoa']."'>".$row['tenKhoa']."</option>";
+										}
+									}
+								}	 
+								?>
+			
+			</select>
+		  </div>
+		   <div class="form-group" style="display:inline" id="ajax-HocPhan">
+			<label for="name" >Tên học phần:</label>
 			
 
 
@@ -139,7 +193,8 @@
 		  </div>
 		  <div class="form-group">
 			<label for="name">Admin:</label>
-			<input type="text" class="form-control" id="admin" name="admin" value="<?php echo $tenAdmin;?>" disabled />
+			<input type="text" class="form-control"  name="admin" value="<?php  echo $tenAdmin;?>" disabled />
+			
 		  </div>
 		  <div class="form-group">
 			<label for="name">Mô tả:</label>

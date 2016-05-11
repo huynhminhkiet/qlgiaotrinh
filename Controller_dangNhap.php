@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+		<?php
+		ob_start();
+		session_start();
+		?>
 
 		<?php 
 			include('database.php');
-								
+			
 			
 			if(isset($_POST['dangNhap']))
 			{
@@ -38,10 +41,13 @@
 				else
 				{
 					$row=mysqli_fetch_array($result1);
-					session_start();
+					
+					
 					$_SESSION['userid'] = $row['tenDangNhap'];
 					$_SESSION['name'] = $row['tenAdmin'];
-					include_once 'admin_trangChu.php';
+					echo $_SESSION['userid'];
+					echo $_SESSION['name'];
+					header("Location: admin_trangChu.php");
 				}
 			 }
 			}

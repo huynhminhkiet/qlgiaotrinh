@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 			$id=$_GET['id'];
 		    $query="SELECT * FROM `admin_tbl` WHERE idAdmin=".$id;
@@ -19,6 +20,7 @@
 								
 				}
 			}
+			
 			
 			
 		?>

@@ -2,6 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			 
+			
 			include('database.php');
 			$id=$_POST['idAdmin'];
 		    $ten=$_POST['ten'];

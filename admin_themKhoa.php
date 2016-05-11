@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
+			
 		?>
 		<script>
 		$j=jQuery.noConflict();
@@ -51,9 +53,9 @@
 			<input type="text" class="form-control" id="khoa" name="tenKhoa">
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Thêm</button>
+		  <button type="submit" class="btn btn-primary" name="themKhoa">Thêm</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachKhoa.php"><button class="btn btn-primary">Trở lại</button></a>
+		  
 		</form>
 											
 					

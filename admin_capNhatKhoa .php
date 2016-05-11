@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 		<?php 
+			include('checkSessionLogin.php');
 			include('header-admin.php');
 			$id=$_GET['id'];
 		    $query="SELECT * FROM `khoa_tbl` WHERE idKhoa=".$id;
@@ -67,9 +68,9 @@
 			<input type="hidden" class="form-control" id="idKhoa" name="idKhoa" value="<?php echo $id ;?>" />
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Cập nhật</button>
-		   
-		  <a href="admin_danhSachKhoa.php"><button class="btn btn-primary">Trở lại</button></a>
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
+				
+		 
 		
 		</form>
 											
