@@ -81,9 +81,9 @@
 			<input type="password" class="form-control" id="matKhau" name="matKhau">
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary" onClick="checkUsername()" >Thêm</button>
+		  <button type="submit" class="btn btn-primary" name="themAdmin">Thêm</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachAdmin.php"><button class="btn btn-primary">Trở lại</button></a>
+		  
 		</form>
 											
 					

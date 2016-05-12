@@ -105,14 +105,27 @@
 			
 			</select>
 		  </div>
+		   
 		   <div class="form-group">
-			<label for="name">Kỳ:</label>
-			<input type="text" class="form-control"  name="ky" value="<?php echo $ky; ?>"  />
+			<label for="name" style="display:block">Kỳ:</label>
+			<select name="ky">
+				<?php 
+					for($i=1;$i<=10;$i++){
+						if($i==$ky){
+							echo"<option value='".$i."' selected>".$i."</option>";
+						}else{
+							echo"<option value='".$i."' >".$i."</option>";
+						}
+					}
+				?>
+			</select>	
+				
+				
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Sửa</button>
+		  <button type="submit" class="btn btn-primary" name="capNhatHocPhan">Cập nhật</button>
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachHocPhan.php"><button class="btn btn-primary">Trở lại</button></a>
+		  
 		</form>
 											
 					

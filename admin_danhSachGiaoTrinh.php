@@ -34,7 +34,7 @@
 							</tr>
 						</thead>
 					   
-						<tbody>
+						<tbody id="tbl-body">
 							
 							<?php
 							

@@ -6,7 +6,12 @@
 		include("checkSessionLogin.php");
 		include('database.php');
 		$id=$_POST['idGT'];
+		if(!isset($_POST['idGT'])){
+			header("Location: Controller_danhSachGiaoTrinh.php");
+			exit;
+		}
 		$sql = "DELETE FROM `giaotrinh_tbl` WHERE idGiaoTrinh=".$id; 
+		
 		$result = mysqli_query($link,$sql);
 		//xoáhết tất cảcác account 
 		if ( !$result ) {

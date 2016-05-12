@@ -5,6 +5,10 @@
 		
 		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['idAdmin'])){
+			header("Location: Controller_danhSachAdmin.php");
+			exit;
+		}
 		$id=$_POST['idAdmin'];
 		$sql = "DELETE FROM `giaotrinh_tbl` WHERE idAdmin=".$id.";";
 		$result = mysqli_query($link,$sql);

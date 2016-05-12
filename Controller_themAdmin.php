@@ -3,11 +3,16 @@
 
 	<?php
 		
-		
+		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['themAdmin'])){
+			header("Location: Controller_danhSachAdmin.php");
+			exit;
+		}
 		$ten=$_POST['ten'];
 		$tenDangNhap=$_POST['tenDangNhap'];
 		$matKhau=$_POST['matKhau'];
+		
 		//allAdmin
 			
 			$query="SELECT * FROM `admin_tbl` WHERE tenDangNhap='".$tenDangNhap."'";

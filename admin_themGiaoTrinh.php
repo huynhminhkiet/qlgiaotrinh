@@ -67,10 +67,15 @@
 </script>
 <script>
 	function showHocPhan(str) {
+		
 		if (str == "") {
+			
 			document.getElementById("ajax-HocPhan").innerHTML = "";
 			return;
-		} else { 
+		} else {
+			
+			var idKhoa=document.getElementById("idKhoa").value;	
+			
 			if (window.XMLHttpRequest) {
 				// code for IE7+, Firefox, Chrome, Opera, Safari
 				xmlhttp = new XMLHttpRequest();
@@ -83,17 +88,33 @@
 					document.getElementById("ajax-HocPhan").innerHTML = xmlhttp.responseText;
 				}
 			};
-			xmlhttp.open("GET","Controller_ajaxHocPhan.php?q="+str,true);
+			xmlhttp.open("GET","Controller_ajaxHocPhan.php?value="+str+"&&idKhoa="+idKhoa+"&&num=0",true);
 			xmlhttp.send();
 		}
 	}
-	function validKhoa() {
-		if(document.getElementById("khoa").value = "0"){
-				
+	function showKy(str) {
+		if (str == "") {
+			document.getElementById("ajax-Ky").innerHTML = "";
+			return;
+		} else { 
 			
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById("ajax-Ky").innerHTML = xmlhttp.responseText;
+				}
+			};
+			xmlhttp.open("GET","Controller_ajaxKy.php",true);
+			xmlhttp.send();
 		}
-		
 	}
+	
 </script>
 <style>
 	.error {
@@ -116,7 +137,7 @@
 			
 
 
-			<select name="khoa"  onchange="showHocPhan(this.value)">
+			<select name="khoa" id="idKhoa"  onchange="showKy(this.value)">
 				
 				<option value="">======Chọn khoa======</option>
 				<?php
@@ -137,7 +158,17 @@
 			
 			</select>
 		  </div>
-		  <div class="form-group" style="display:inline" id="ajax-HocPhan" >
+		  <div class="form-group" style="display:inline" id="ajax-Ky">
+			
+			
+			
+
+
+			
+			
+			
+		  </div>
+		   <div class="form-group" style="display:inline" id="ajax-HocPhan" >
 			
 			
 			
@@ -169,16 +200,16 @@
 		  </div>
 		  <div class="form-group">
 			<label >Admin:</label>
-			<input type="text" class="form-control" id="admin" name="admin" value="<?php echo $_SESSION['name'];?>" readonly />
+			<input type="text" class="form-control" id="admin" name="admin" value="<?php echo $_SESSION['userid'];?>" readonly />
 		  </div>
 		  <div class="form-group">
 			<label >Mô tả:</label>
 			<textarea  class="form-control" id="moTa" name="moTa"></textarea>
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary" onclick="">Thêm</button>
-		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachHocPhan.php"><button class="btn btn-primary">Trở lại</button></a>
+		  <button type="submit" class="btn btn-primary" name="themGiaoTrinh">Thêm</button>
+		  
+		 
 		</form>
 											
 					

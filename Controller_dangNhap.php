@@ -29,8 +29,7 @@
 			 }
 			 if($u && $p)
 			 {
-				$link = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-				mysqli_select_db($link,"quanlygiaotrinh");
+				include('database.php');
 				$query="SELECT * FROM `admin_tbl` WHERE tenDangNhap='".$u."' and matKhau='".$p."'";
 				$result1=mysqli_query($link,$query);
 				if(mysqli_num_rows($result1) == 0)
@@ -45,8 +44,10 @@
 					
 					$_SESSION['userid'] = $row['tenDangNhap'];
 					$_SESSION['name'] = $row['tenAdmin'];
+					$_SESSION['id'] = $row['idAdmin'];
 					echo $_SESSION['userid'];
 					echo $_SESSION['name'];
+					
 					header("Location: admin_trangChu.php");
 				}
 			 }

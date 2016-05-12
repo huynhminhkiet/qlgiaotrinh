@@ -5,6 +5,10 @@
 		
 		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['themHocPhan'])){
+			header("Location: Controller_danhSachHocPhan.php");
+			exit;
+		}
 		$tenHP=$_POST['tenHocPhan'];
 		$idKhoa=$_POST['khoa'];
 		$ky=$_POST['ky'];
