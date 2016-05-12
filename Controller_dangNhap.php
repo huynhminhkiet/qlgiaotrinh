@@ -30,7 +30,8 @@
 			 if($u && $p)
 			 {
 				$link = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
-				mysqli_select_db($link,"quanlygiaotrinh");
+				mysqli_set_charset($link,"utf8");
+				mysqli_select_db($link,"qlgiaotrinh");
 				$query="SELECT * FROM `admin_tbl` WHERE tenDangNhap='".$u."' and matKhau='".$p."'";
 				$result1=mysqli_query($link,$query);
 				if(mysqli_num_rows($result1) == 0)
