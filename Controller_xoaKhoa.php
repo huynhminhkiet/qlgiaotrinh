@@ -3,8 +3,12 @@
 
 	<?php
 		
-		
+		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['idKhoa'])){
+			header("Location: Controller_danhSachKhoa.php");
+			exit;
+		}
 		$idKhoa=$_POST['idKhoa'];
 		
 		

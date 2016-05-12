@@ -3,8 +3,12 @@
 
 		<?php 
 			 
-			
+			include("checkSessionLogin.php");
 			include('database.php');
+			if(!isset($_POST['capNhatAdmin'])){
+				header("Location: Controller_danhSachAdmin.php");
+				exit;
+		}
 			$id=$_POST['idAdmin'];
 		    $ten=$_POST['ten'];
 			$user=$_POST['tenDangNhap'];
@@ -24,7 +28,7 @@
 						include_once 'admin_capNhatAdmin.php';
 					}else{
 						$sql = "UPDATE `admin_tbl` SET `tenAdmin`='".$ten."',`tenDangNhap`='".$user."',`matKhau`='".$pass."' WHERE `idAdmin`=".$id; 
-						echo $sql;
+						
 						$result = mysqli_query($link,$sql); 
 						//đổi password của admin 
 						if ( !$result ) {

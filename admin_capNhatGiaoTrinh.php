@@ -97,10 +97,11 @@
 					document.getElementById("ajax-HocPhan").innerHTML = xmlhttp.responseText;
 				}
 			};
-			xmlhttp.open("GET","Controller_ajaxHocPhan.php?q="+str,true);
+			xmlhttp.open("GET","Controller_ajaxHocPhan.php?value="+str+"&&num=1",true);
 			xmlhttp.send();
 		}
 	}
+	
 </script>
 <style>
 	.error {
@@ -201,9 +202,9 @@
 			<textarea  class="form-control" id="moTa" name="moTa"> <?php echo $moTa;  ?></textarea>
 		  </div>
 	
-		  <button type="submit" class="btn btn-primary">Thêm</button>
-		  <button type="reset" class="btn btn-primary">Nhập lại</button>
-		  <a href="admin_danhSachHocPhan.php"><button class="btn btn-primary">Trở lại</button></a>
+		   <button type="submit" class="btn btn-primary" name="capNhatGiaoTrinh" >Cập nhật</button>
+			
+		 
 		</form>
 											
 					

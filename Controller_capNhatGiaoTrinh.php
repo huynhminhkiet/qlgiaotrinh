@@ -5,6 +5,10 @@
 			
 			include("checkSessionLogin.php");
 			include('database.php');
+			if(!isset($_POST['capNhatGiaoTrinh'])){
+				header("Location: Controller_danhSachGiaoTrinh.php");
+				exit;
+			}
 			$idGT=$_POST['idGT'];
 			$tenGT=$_POST['tenGT'];
 			$idHP=$_POST['hocPhan'];

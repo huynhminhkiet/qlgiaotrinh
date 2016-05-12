@@ -5,6 +5,10 @@
 		
 		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['themGiaoTrinh'])){
+			header("Location: Controller_danhSachGiaoTrinh.php");
+			exit;
+		}
 		$tenGT=$_POST['tenGiaoTrinh'];
 		$idHP=$_POST['hocPhan'];
 		$ngay=$_POST['ngayTao'];
@@ -13,7 +17,7 @@
 		$tacGia=$_POST['tacGia'];
 		$linkd=$_POST['link'];
 	
-		$query="INSERT INTO `giaotrinh_tbl`(`idHocPhan`, `idAdmin`, `ngayTao`, `tenGiaoTrinh`, `tacGia`, `moTa`, `link`) VALUES (".$idHP.",2,'".$ngay."','".$tenGT."','".$tacGia."','".$moTa."','".$linkd."')";
+		$query="INSERT INTO `giaotrinh_tbl`(`idHocPhan`, `idAdmin`, `ngayTao`, `tenGiaoTrinh`, `tacGia`, `moTa`, `link`) VALUES (".$idHP.",".$_SESSION['id'].",'".$ngay."','".$tenGT."','".$tacGia."','".$moTa."','".$linkd."')";
 		
 		$result = mysqli_query($link ,$query); 
 		if ( !$result ) {

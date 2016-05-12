@@ -69,6 +69,7 @@
 		  </div>
 	
 			<button type="submit" class="btn btn-primary">Cập nhật</button>
+			<button type="reset" class="btn btn-primary">Nhập lại</button>
 				
 		 
 		

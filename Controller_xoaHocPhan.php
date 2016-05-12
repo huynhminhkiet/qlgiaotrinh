@@ -3,8 +3,12 @@
 
 	<?php
 		
-		
+		include("checkSessionLogin.php");
 		include('database.php');
+		if(!isset($_POST['idHP'])){
+			header("Location: Controller_danhSachHocPhan.php");
+			exit;
+		}
 		$id=$_POST['idHP'];
 		$sql ="DELETE FROM `giaotrinh_tbl` WHERE idHocPhan=".$id.";";
 		
