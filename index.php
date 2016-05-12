@@ -59,7 +59,7 @@
 							if (isset($_GET['page']))
 								$page = $_GET['page'];
 							
-							$recordsPerPage = 2;
+							$recordsPerPage = 5;
 							$noOfRecords = 0;
 							
 							$sqlCount = "SELECT COUNT(*) as total FROM giaotrinh_tbl INNER JOIN hocphan_tbl ON giaotrinh_tbl.idHocPhan = hocphan_tbl.idHocPhan INNER JOIN khoa_tbl ON hocphan_tbl.idKhoa = khoa_tbl.idKhoa WHERE khoa_tbl.idKhoa =".$idKhoa;
