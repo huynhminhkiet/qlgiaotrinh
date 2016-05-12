@@ -78,12 +78,12 @@
 		
 	<body>
 		<?php 
-<<<<<<< HEAD
+
 			$link = mysqli_connect("localhost","root","") or die ("Khong the ket noi den CSDL MySQL");
 			mysqli_select_db($link,"qlgiaotrinh");
-=======
+
 			include("database.php");
->>>>>>> 2dcc4d09c3f403232b17717dda5bde50f742ad95
+
 		?>
 		
 		

@@ -22,7 +22,6 @@
 			}
 			
 			
-			
 		?>
 		<script>
 		$j=jQuery.noConflict();
@@ -104,16 +103,6 @@
 		  <button type="reset" class="btn btn-primary">Nhập lại</button>
 		 
 		</form>
-											
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 					</div>
 	

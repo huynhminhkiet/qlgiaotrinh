@@ -50,7 +50,7 @@
 									<td>
 										<input type="hidden" id="hidden-ma" value="<?php echo $row['idKhoa']; ?>" />
 										<button style='float: right;margin-bottom:10px' class='btn btn-danger' id="btn-xoa" data-toggle="modal" data-target="#myModal" >Xóa</button>
-										<a style='float: right;margin-bottom:10px'  href='admin_capNhatKhoa .php?id=<?php echo $row['idKhoa'];  ?>' ><button class='btn btn-info'  >Sửa</button></a>
+										<a style='float: right;margin-bottom:10px'  href='admin_capNhatKhoa.php?id=<?php echo $row['idKhoa'];  ?>' ><button class='btn btn-info'  >Sửa</button></a>
 									</td>
 								</tr>
 								<?php

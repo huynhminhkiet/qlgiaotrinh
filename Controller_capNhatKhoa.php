@@ -12,7 +12,7 @@
 			$id=$_POST['idKhoa'];
 		    $ten=$_POST['tenKhoa'];
 									
-			$sql = "UPDATE `khoa_tbl` SET `tenKhoa`='".$ten."' WHERE `idKhoa`=".$id; 
+			$sql = "UPDATE khoa_tbl SET tenKhoa='".$ten."' WHERE idKhoa=".$id; 
 			$result = mysqli_query($link,$sql); 
 			//đổi password của admin 
 			if ( !$result ) {

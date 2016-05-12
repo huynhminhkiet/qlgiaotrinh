@@ -4,7 +4,7 @@
 		<?php 
 			include('checkSessionLogin.php');
 			include('header-admin.php');
-			$id=$_GET['id'];
+			$id= $_GET['id'];
 		    $query="SELECT * FROM `khoa_tbl` WHERE idKhoa=".$id;
 		    $result=mysqli_query($link,$query);
 								
@@ -68,7 +68,7 @@
 			<input type="hidden" class="form-control" id="idKhoa" name="idKhoa" value="<?php echo $id ;?>" />
 		  </div>
 	
-			<button type="submit" class="btn btn-primary">Cập nhật</button>
+			<button type="submit" class="btn btn-primary" name="capNhatKhoa">Cập nhật</button>
 			<button type="reset" class="btn btn-primary">Nhập lại</button>
 				
 		 

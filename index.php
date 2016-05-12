@@ -66,9 +66,8 @@
 							$resultSet = mysqli_query($link, $sqlCount);
 							$row = mysqli_fetch_assoc($resultSet);
 							$noOfRecords = $row['total'];
-							echo $noOfRecords;
 							
-							$sql = "SELECT giaotrinh_tbl.tenGiaoTrinh, giaotrinh_tbl.tacGia, khoa_tbl.tenKhoa, hocphan_tbl.tenHocPhan FROM giaotrinh_tbl INNER JOIN hocphan_tbl ON giaotrinh_tbl.idHocPhan = hocphan_tbl.idHocPhan INNER JOIN khoa_tbl ON hocphan_tbl.idKhoa = khoa_tbl.idKhoa WHERE khoa_tbl.idKhoa =".$idKhoa.
+							$sql = "SELECT giaotrinh_tbl.idGiaoTrinh, giaotrinh_tbl.tenGiaoTrinh, giaotrinh_tbl.tacGia, khoa_tbl.tenKhoa, hocphan_tbl.tenHocPhan FROM giaotrinh_tbl INNER JOIN hocphan_tbl ON giaotrinh_tbl.idHocPhan = hocphan_tbl.idHocPhan INNER JOIN khoa_tbl ON hocphan_tbl.idKhoa = khoa_tbl.idKhoa WHERE khoa_tbl.idKhoa =".$idKhoa.
 								" LIMIT ".$page*$recordsPerPage.", ".$recordsPerPage;
 							
 							if (isset($_GET['hp'])) {
@@ -77,9 +76,8 @@
 								$resultSet = mysqli_query($link, $sqlCount);
 								$row = mysqli_fetch_assoc($resultSet);
 								$noOfRecords = $row['total'];
-								echo $noOfRecords;	
 								
-								$sql = "SELECT giaotrinh_tbl.tenGiaoTrinh, giaotrinh_tbl.tacGia, khoa_tbl.tenKhoa, hocphan_tbl.tenHocPhan FROM giaotrinh_tbl INNER JOIN hocphan_tbl ON giaotrinh_tbl.idHocPhan = hocphan_tbl.idHocPhan INNER JOIN khoa_tbl ON hocphan_tbl.idKhoa = khoa_tbl.idKhoa 
+								$sql = "SELECT giaotrinh_tbl.idGiaoTrinh, giaotrinh_tbl.tenGiaoTrinh, giaotrinh_tbl.tacGia, khoa_tbl.tenKhoa, hocphan_tbl.tenHocPhan FROM giaotrinh_tbl INNER JOIN hocphan_tbl ON giaotrinh_tbl.idHocPhan = hocphan_tbl.idHocPhan INNER JOIN khoa_tbl ON hocphan_tbl.idKhoa = khoa_tbl.idKhoa 
 									WHERE khoa_tbl.idKhoa =".$_GET['idKhoa']." AND hocphan_tbl.idHocPhan =".$_GET['hp'];
 								
 							} 
@@ -90,11 +88,11 @@
 								echo 
 									'<div class="clearfix single_content">
 										<div class="clearfix post_detail">
-											<h2><strong><a href="">'.$row['tenGiaoTrinh'].'</a></strong></h2>
+											<h2><strong>'.$row['tenGiaoTrinh'].'</strong></h2>
 											<p>Tác giả: '.$row['tacGia'].'</p>
 											<p>Khoa: '.$row['tenKhoa'].'</p>
 											<p>Học phần: '.$row['tenHocPhan'].'</p>
-											<a href="">Chi tiết</a>
+											<a href="xem-chi-tiet.php?idGiaoTrinh='.$row['idGiaoTrinh'].'">Chi tiết</a>
 										</div>
 									</div>';
 							}
@@ -102,15 +100,16 @@
 							$noOfPages = $noOfRecords/$recordsPerPage;
 							
 							$linkPart = "&idKhoa=".$idKhoa;
+							
 							if (isset($_GET['hp'])) {
-								$linkPart += "?hp=".$_GET['hp'];
+								$linkPart = $linkPart."&hp=".$_GET['hp'];
 							}
 							
-							echo "<div class='pagination'>";
+							echo "<div class='pagination'><nav><ul>";
 							for ( $page = 0; $page < $noOfPages; $page ++ ) {
-								
-								echo "<a href='index.php?page=".($page + $linkPart)."'>{$page}</a>";
+								echo "<li><a href='index.php?page=".$page."".$linkPart."'>{$page}</a></li>";
 							}
+							echo "</ul></nav></div>";
 						?>
 						
 					

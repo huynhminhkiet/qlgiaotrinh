@@ -6,7 +6,6 @@
 			session_start();
 			session_destroy();
 			header("Location: admin_dangNhap.php");	
-		
 		?>
 		
 		

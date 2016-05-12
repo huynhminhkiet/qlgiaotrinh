@@ -7,13 +7,13 @@
 		include('database.php');
 		
 		if(!isset($_POST['themKhoa'])){
-<<<<<<< HEAD
+
 			header("Location:admin_themKhoa.php");
 
-=======
+
 			header("Location:Controller_danhSachKhoa.php");
 			exit;
->>>>>>> 6045bad446167f7b55ee0c0830da157d77af61b0
+
 		}else{
 			$tenKhoa=$_POST['tenKhoa'];
 			$query="INSERT INTO `khoa_tbl`( `tenKhoa`) VALUES ('".$tenKhoa."')";

@@ -19,20 +19,13 @@
 					<div class="clearfix logo floatleft">
 						<a href=""><h1><span>GIÁO TRÌNH</span> BÁCH KHOA</h1></a>
 					</div>
-					<div class="clearfix search floatright">
-						<form>
-							<input type="text" placeholder="Search"/>
-							<input type="submit" />
-						</form>
-					</div>
+					
 				</div>
 				<div class="header_bottom">
 					<nav>
 						<ul id="nav">
-							<li><a href="">Trang chủ</a></li>							
-							<li><a href="">Giới thiệu</a></li>
-							<li><a href="">Tìm kiếm</a></li>
-							<li><a href="">Liên hệ</a></li>
+							<li><a href="index.php">Trang chủ</a></li>							
+							<li><a href="">Giới thiệu</a></li>			
 						</ul>
 					</nav>
 				</div>
